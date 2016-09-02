@@ -1,0 +1,14 @@
+{
+    "name": "goose-studio/cpt-persons",
+    "description": "Adds a new Custom Post Type called Persons for adding and displaying persons on your site.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Andreas Nurbo",
+            "email": "andreas@goose.studio"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
