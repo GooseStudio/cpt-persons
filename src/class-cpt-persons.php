@@ -83,6 +83,6 @@ class CPT_Persons {
 			'publicly_queryable'  => true,
 			'capabilities'        => $capabilities,
 		);
-		register_post_type( 'persons', $args );
+		register_post_type( 'cpt-persons', $args );
 	}
 }
