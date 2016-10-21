@@ -12,7 +12,7 @@ class Persons {
 	 *
 	 * @var \WP_Post
 	 */
-	private static $current_person = null;
+	public static $current_person = null;
 
 	/**
 	 * Retrieve the post object
@@ -22,7 +22,7 @@ class Persons {
 	 *
 	 * @return mixed|\WP_Post
 	 */
-	public static function get_post_by( $identifier, $by = 'slug' ) {
+	public static function get_by( $identifier, $by = 'slug' ) {
 		switch ( $by ) {
 			case 'id':
 				$query_params = array( 'p' => intval( $identifier ) );
@@ -53,5 +53,22 @@ class Persons {
 	 */
 	public static function current() {
 		return self::$current_person;
+	}
+
+	/**
+	 * Retrieves all published persons.
+	 *
+	 * @param int $limit Limit results.
+	 *
+	 * @return \WP_Query
+	 */
+	public static function find_published( $limit = -1 ) {
+		$query_params = array();
+		$query_params         = array_merge( $query_params, array(
+			'posts_per_page' => $limit,
+			'post_type'      => cpt_persons_get_post_type(),
+		) );
+		$query = new \WP_Query( $query_params );
+		return $query;
 	}
 }

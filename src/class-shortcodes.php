@@ -13,6 +13,7 @@ class Shortcodes {
 	 */
 	public function init() {
 		add_shortcode( 'person', array( $this, 'render_single_person' ) );
+		add_shortcode( 'persons', array( $this, 'render_many_persons' ) );
 	}
 
 	/**
@@ -44,12 +45,15 @@ class Shortcodes {
 			$by         = 'name';
 			$identifier = $attributes['name'];
 		}
-		$use_link = boolval( $attributes['link'] );
+		$use_link        = boolval( $attributes['link'] );
 		$display_excerpt = boolval( $attributes['excerpt'] );
-		$display  = in_array( $attributes['display'], array( 'row', 'block' ), true ) ? $attributes['display'] : 'row';
+		$display         = in_array( $attributes['display'], array(
+			'row',
+			'block'
+		), true ) ? $attributes['display'] : 'row';
 
 		if ( '' !== $by ) {
-			$person = Persons::get_post_by( $identifier, $by );
+			$person = Persons::get_by( $identifier, $by );
 			ob_start();
 			include plugin_dir_path( CPT_PERSONS_PLUGIN_FILE ) . '/assets/single-person.php';
 			$template = ob_get_contents();
@@ -57,6 +61,41 @@ class Shortcodes {
 		} else {
 			$template = 'Missing shortcode attributes.';
 		}
+
+		return $template;
+	}
+
+	/**
+	 * Render a single person short code
+	 *
+	 * @param array $attributes Attributes for the shortcode.
+	 *
+	 * @return string
+	 */
+	public function render_many_persons( $attributes ) {
+		wp_enqueue_style( 'cpt-persons-frontend-css', plugin_dir_url( CPT_PERSONS_PLUGIN_FILE ) . '/assets/css/frontend.css' );
+		$attributes      = shortcode_atts( array(
+			'link'    => false,
+			'display' => 'row',
+			'excerpt' => true,
+		), $attributes, 'person' );
+		$use_link        = boolval( $attributes['link'] );
+		$display_excerpt = boolval( $attributes['excerpt'] );
+		$display         = in_array( $attributes['display'], array(
+			'row',
+			'block',
+		), true ) ? $attributes['display'] : 'row';
+
+		$person = Persons::find_published();
+		ob_start();
+		echo '<div class="cpt-persons">';
+		while ( $person->have_posts() ) {
+			Persons::$current_person = $person->next_post();
+			include plugin_dir_path( CPT_PERSONS_PLUGIN_FILE ) . '/assets/single-person.php';
+		}
+		echo '</div>';
+		$template = ob_get_contents();
+		ob_end_clean();
 
 		return $template;
 	}
