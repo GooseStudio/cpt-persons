@@ -38,7 +38,7 @@ class Persons_UI {
 	public function load_css( $hook ) {
 		$post_type = get_query_var( 'post_type' );
 		if ( 'edit.php' === $hook && 'cpt-persons' === $post_type ) {
-			wp_enqueue_style( 'cpt-persons-admin-css', plugin_dir_url( CPT_PERSONS_PLUGIN_DIR ) . '/assets/css/admin.css' );
+			wp_enqueue_style( 'cpt-persons-admin-css', plugin_dir_url( CPT_PERSONS_PLUGIN_FILE ) . '/assets/css/admin.css' );
 		}
 	}
 

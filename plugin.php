@@ -11,16 +11,19 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Domain Path: /languages
 Text Domain: cpt-persons
 */
-define( 'CPT_PERSONS_PLUGIN_DIR', __FILE__ );
+define( 'CPT_PERSONS_PLUGIN_FILE', __FILE__ );
 include 'src/_functions.php';
 include 'src/class-persons-post-type.php';
+include 'src/class-persons.php';
+include 'src/class-shortcodes.php';
 ( new \GooseStudio\CPTPersons\Persons_PostType() )->init();
 if ( is_admin() ) {
 	include 'src/class-persons-ui.php';
 	( new \GooseStudio\CPTPersons\Persons_UI() )->init();
 }
+( new \GooseStudio\CPTPersons\Shortcodes())->init();
 
-register_activation_hook( __FILE__, function () {
+register_activation_hook( CPT_PERSONS_PLUGIN_FILE, function () {
 	$role = get_role( 'administrator' );
 	if ( ! is_null( $role ) ) {
 		$capabilities = array(
