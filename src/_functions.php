@@ -45,6 +45,39 @@ function cptp_get_the_name() {
 }
 
 /**
+ * Echoes the persons uri.
+ */
+function cptp_the_permalink() {
+	echo esc_url( cptp_get_the_permalink() );
+}
+
+/**
+ * Retrieves the current persons permalink.
+ *
+ * @return string
+ */
+function cptp_get_the_permalink() {
+	return get_post_permalink( Persons::current()->ID );
+}
+
+/**
+ * Echoes the current persons excerpt.
+ *
+ */
+function cptp_the_excerpt() {
+	echo cptp_get_the_excerpt();
+}
+
+/**
+ * Retrieves the current persons excerpt.
+ *
+ * @return string
+ */
+function cptp_get_the_excerpt() {
+	return apply_filters( 'the_content', Persons::current()->post_excerpt );
+}
+
+/**
  * Echoes the current persons description.
  *
  */

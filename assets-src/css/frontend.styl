@@ -2,8 +2,15 @@
   background-color #FFF
   padding 7px
   border-radius 4px
-  .cpt-person-portrait
-    float left
-    margin-right 10px;
-  .cpt-person-description p
-    padding-top 0
+  .cpt-person-description, .cpt-person-excerpt
+    p
+     padding-top 0
+  &.row
+    .cpt-person-portrait
+      float left
+      margin-right 10px;
+  &.block
+    width: 20%;
+    min-width: 200px;
+    .cpt-person-portrait, header
+      text-align center

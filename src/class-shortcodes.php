@@ -24,8 +24,15 @@ class Shortcodes {
 	 */
 	public function render_single_person( $attributes ) {
 		wp_enqueue_style( 'cpt-persons-frontend-css', plugin_dir_url( CPT_PERSONS_PLUGIN_FILE ) . '/assets/css/frontend.css' );
-		$attributes = array_intersect_key( $attributes, array( 'id' => '', 'slug' => '', 'name' => '' ) );
-		$by = '';
+		$attributes = shortcode_atts( array(
+			'id'      => '',
+			'slug'    => '',
+			'name'    => '',
+			'link'    => false,
+			'display' => 'row',
+			'excerpt' => true,
+		), $attributes, 'person' );
+		$by         = '';
 		$identifier = '';
 		if ( isset( $attributes['id'] ) ) {
 			$by         = 'id';
@@ -37,6 +44,10 @@ class Shortcodes {
 			$by         = 'name';
 			$identifier = $attributes['name'];
 		}
+		$use_link = boolval( $attributes['link'] );
+		$display_excerpt = boolval( $attributes['excerpt'] );
+		$display  = in_array( $attributes['display'], array( 'row', 'block' ), true ) ? $attributes['display'] : 'row';
+
 		if ( '' !== $by ) {
 			$person = Persons::get_post_by( $identifier, $by );
 			ob_start();

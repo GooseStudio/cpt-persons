@@ -1,2 +1,2 @@
-.cpt-person-single{background-color:#fff;padding:7px;border-radius:4px}.cpt-person-single .cpt-person-portrait{float:left;margin-right:10px}.cpt-person-single .cpt-person-description p{padding-top:0}
+.cpt-person-single{background-color:#fff;padding:7px;border-radius:4px}.cpt-person-single .cpt-person-description p,.cpt-person-single .cpt-person-excerpt p{padding-top:0}.cpt-person-single.row .cpt-person-portrait{float:left;margin-right:10px}.cpt-person-single.block{width:20%;min-width:200px}.cpt-person-single.block .cpt-person-portrait,.cpt-person-single.block header{text-align:center}
 /*# sourceMappingURL=frontend.min.css.map */
