@@ -12,13 +12,13 @@ namespace GooseStudio\CPTPersons;
  *
  * @package GooseStudio\CPTPersons
  */
-class CPT_Persons {
+class Persons_PostType {
 
 	/**
 	 * Setups actions and filters
 	 */
 	public function init() {
-		add_action( 'init', [ $this, 'register_post_type' ] );
+		add_action( 'init', array( $this, 'register_post_type' ) );
 	}
 
 	/**
@@ -58,6 +58,7 @@ class CPT_Persons {
 			'edit_post'          => 'edit_person',
 			'read_post'          => 'read_person',
 			'delete_post'        => 'delete_person',
+			'delete_posts'        => 'delete_persons',
 			'edit_posts'         => 'edit_persons',
 			'edit_others_posts'  => 'edit_others_persons',
 			'publish_posts'      => 'publish_persons',
@@ -68,7 +69,7 @@ class CPT_Persons {
 			'description'         => __( 'Makes it possible to add persons to your site', 'cpt-persons' ),
 			'labels'              => $labels,
 			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
-			'taxonomies'          => array( 'category', 'post_tag' ),
+			'taxonomies'          => array(),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
@@ -82,7 +83,8 @@ class CPT_Persons {
 			'exclude_from_search' => true,
 			'publicly_queryable'  => true,
 			'capabilities'        => $capabilities,
+			'rewrite'             => array( 'slug' => 'persons', 'feeds' => false, 'with_front' => false ),
 		);
-		register_post_type( 'cpt-persons', $args );
+		register_post_type( cpt_persons_get_post_type(), $args );
 	}
 }

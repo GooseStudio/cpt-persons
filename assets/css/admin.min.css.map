@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.css"],"names":[],"mappings":"AAAA,oCACE,WAAa,CACd","file":"admin.min.css","sourcesContent":[".post-type-cpt-persons th#thumbnail {\n  width: 100px;\n}\n"]}
