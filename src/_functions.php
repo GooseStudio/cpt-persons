@@ -15,6 +15,22 @@ function cpt_persons_get_post_type() {
 /**
  * Echoes the persons name.
  */
+function cptp_the_id() {
+	echo esc_attr( cptp_get_the_id() );
+}
+
+/**
+ * Retrieves the current persons name.
+ *
+ * @return string
+ */
+function cptp_get_the_id() {
+	return Persons::current()->ID;
+}
+
+/**
+ * Echoes the persons name.
+ */
 function cptp_the_name() {
 	echo esc_html( cptp_get_the_name() );
 }

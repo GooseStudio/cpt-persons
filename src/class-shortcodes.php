@@ -23,6 +23,7 @@ class Shortcodes {
 	 * @return string
 	 */
 	public function render_single_person( $attributes ) {
+		wp_enqueue_style( 'cpt-persons-frontend-css', plugin_dir_url( CPT_PERSONS_PLUGIN_FILE ) . '/assets/css/frontend.css' );
 		$attributes = array_intersect_key( $attributes, array( 'id' => '', 'slug' => '', 'name' => '' ) );
 		$by = '';
 		$identifier = '';
