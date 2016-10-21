@@ -14,23 +14,27 @@
 	<header>
 		<h3 class="cpt-person-name">
 			<?php if ( $use_link ) : ?>
-			<?php printf( '<a href="%s">%s</a>', esc_url( cptp_get_the_permalink() ), esc_html( cptp_get_the_name() ) ) ?>
+				<?php printf( '<a href="%s">%s</a>', esc_url( cptp_get_the_permalink() ), esc_html( cptp_get_the_name() ) ) ?>
 			<?php else : ?>
-			<?php cptp_the_name() ?>
+				<?php cptp_the_name() ?>
 			<?php endif ?>
 		</h3>
 	</header>
 	<div class="cpt-person-portrait">
-		<?php cptp_the_portrait() ?>
+		<?php if ( $use_link ) : ?>
+			<?php printf( '<a href="%s">%s</a>', esc_url( cptp_get_the_permalink() ), cptp_get_the_portrait() ) ?>
+		<?php else : ?>
+			<?php cptp_the_portrait() ?>
+		<?php endif ?>
 	</div>
 	<?php if ( $display_excerpt ) : ?>
-	<section class="cpt-person-excerpt">
-		<?php cptp_the_excerpt(); ?>
-	</section>
+		<section class="cpt-person-excerpt">
+			<?php cptp_the_excerpt($use_link); ?>
+		</section>
 	<?php else : ?>
-	<section class="cpt-person-description">
-		<?php cptp_the_description(); ?>
-	</section>
+		<section class="cpt-person-description">
+			<?php cptp_the_description(); ?>
+		</section>
 	<?php endif ?>
 	<footer>
 		<?php do_action( 'cpt_person_single_footer' ) ?>

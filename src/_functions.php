@@ -63,18 +63,30 @@ function cptp_get_the_permalink() {
 /**
  * Echoes the current persons excerpt.
  *
+ * @param bool $show_learn_more Displays a learn more link.
  */
-function cptp_the_excerpt() {
-	echo cptp_get_the_excerpt();
+function cptp_the_excerpt( $show_learn_more = false ) {
+	echo cptp_get_the_excerpt( $show_learn_more );
 }
 
 /**
  * Retrieves the current persons excerpt.
  *
+ * @param bool $show_learn_more Displays a learn more link.
+ *
  * @return string
  */
-function cptp_get_the_excerpt() {
-	return apply_filters( 'the_content', Persons::current()->post_excerpt );
+function cptp_get_the_excerpt( $show_learn_more = false ) {
+	$excerpt = Persons::current()->post_excerpt;
+	if ( $show_learn_more ) {
+		$learn_more_link = sprintf( ' ... <a href="%s">%s</a>',
+			esc_url( cptp_get_the_permalink() ),
+			esc_html( __( 'Learn more', 'cpt-persons' ) )
+		);
+		$excerpt .= apply_filters( 'cpt_persons_excerpt_more', $learn_more_link, Persons::current() );
+	}
+
+	return apply_filters( 'the_content', $excerpt );
 }
 
 /**
