@@ -45,8 +45,8 @@ class Shortcodes {
 			$by         = 'name';
 			$identifier = $attributes['name'];
 		}
-		$use_link        = boolval( $attributes['link'] );
-		$display_excerpt = boolval( $attributes['excerpt'] );
+		$use_link        = wp_validate_boolean( $attributes['link'] );
+		$display_excerpt = wp_validate_boolean( $attributes['excerpt'] );
 		$display         = in_array( $attributes['display'], array(
 			'row',
 			'block'
@@ -79,8 +79,8 @@ class Shortcodes {
 			'display' => 'row',
 			'excerpt' => true,
 		), $attributes, 'person' );
-		$use_link        = boolval( $attributes['link'] );
-		$display_excerpt = boolval( $attributes['excerpt'] );
+		$use_link        = wp_validate_boolean( $attributes['link'] );
+		$display_excerpt = wp_validate_boolean( $attributes['excerpt'] );
 		$display         = in_array( $attributes['display'], array(
 			'row',
 			'block',
