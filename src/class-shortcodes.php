@@ -12,8 +12,8 @@ class Shortcodes {
 	 * Initiates shortcodes.
 	 */
 	public function init() {
-		add_shortcode( 'person', array( $this, 'render_single_person' ) );
-		add_shortcode( 'persons', array( $this, 'render_many_persons' ) );
+		add_shortcode( 'cpt_person', array( $this, 'render_single_person' ) );
+		add_shortcode( 'cpt_persons', array( $this, 'render_many_persons' ) );
 	}
 
 	/**
