@@ -32,7 +32,7 @@ class Shortcodes {
 			'link'    => false,
 			'display' => 'row',
 			'excerpt' => true,
-		), $attributes, 'person' );
+		), $attributes, 'cpt_person' );
 		$by         = '';
 		$identifier = '';
 		if ( isset( $attributes['id'] ) ) {
@@ -49,7 +49,7 @@ class Shortcodes {
 		$display_excerpt = wp_validate_boolean( $attributes['excerpt'] );
 		$display         = in_array( $attributes['display'], array(
 			'row',
-			'block'
+			'block',
 		), true ) ? $attributes['display'] : 'row';
 
 		if ( '' !== $by ) {
@@ -78,7 +78,7 @@ class Shortcodes {
 			'link'    => false,
 			'display' => 'row',
 			'excerpt' => true,
-		), $attributes, 'person' );
+		), $attributes, 'cpt_persons' );
 		$use_link        = wp_validate_boolean( $attributes['link'] );
 		$display_excerpt = wp_validate_boolean( $attributes['excerpt'] );
 		$display         = in_array( $attributes['display'], array(
